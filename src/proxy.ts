@@ -1,7 +1,7 @@
 import { Storage } from "./types";
 
 // Use ES6 proxies to allow properties to be get, set and deleted using
-// JS operators (i.e. storage.x = y, y = storage.x, delete storage.x)
+// JS operators (i.e. storage["x"] = y, y = storage["x"], delete storage["x"])
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
 
 export class WebStorageAPIError extends Error {
@@ -25,7 +25,15 @@ export const StorageProxy: ProxyHandler<Storage> = {
     if (methodsAndProps.includes(property)) {
       throw new WebStorageAPIError();
     }
-    backend.setItem(property, value);
+
+    const stringifiedVal =
+      typeof value === "string"
+        ? value // string
+        : typeof value === "object"
+        ? JSON.stringify(value) // objects and arrays
+        : String(value); // numbers and booleans
+    backend.setItem(property, stringifiedVal);
+
     return true;
   },
   deleteProperty(backend, prop) {
