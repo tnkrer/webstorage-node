@@ -55,7 +55,7 @@ export class StorageBackend implements Storage {
       VALUES (@key, @value, 
         COALESCE(
           (SELECT added FROM webstorage WHERE key=@key), 
-          strftime('%s', 'now')
+          (strftime('%s', 'now'))
         )
       );`;
     this.database.prepare(statement).run({ key, value });
