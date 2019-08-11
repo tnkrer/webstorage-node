@@ -16,7 +16,7 @@ export const StorageProxy: ProxyHandler<Storage> = {
     const property = String(prop);
     const methodsAndProps = Object.keys(Object.getPrototypeOf(backend));
     return methodsAndProps.includes(property)
-      ? backend[property]
+      ? backend[property].bind(backend)
       : backend.getItem(property);
   },
   set(backend, prop, value) {
