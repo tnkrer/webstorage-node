@@ -2,9 +2,9 @@
   "name": "webstorage-node",
   "version": "1.0.0",
   "description": "Drop-in localStorage and sessionStorage implementation for browserless Node.js environments",
-  "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "ts-node-dev --respawn  --no-notify ./src",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,17 @@
   "bugs": {
     "url": "https://github.com/Tyncture/webstorage-node/issues"
   },
-  "homepage": "https://github.com/Tyncture/webstorage-node#readme"
+  "homepage": "https://github.com/Tyncture/webstorage-node#readme",
+  "dependencies": {
+    "@types/better-sqlite3": "^5.4.0",
+    "better-sqlite3": "^5.4.2"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0-pre.40"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.js"
 }
