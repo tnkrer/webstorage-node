@@ -8,8 +8,8 @@
 A drop-in localStorage and sessionStorage implementation for browserless 
 Node.js environments. 
 
-Suited for browserless testing environments and use cases where session-scoped 
-or persistent storage requirements are trivial.
+It is suited for browserless testing environments and use cases with
+basic session-scoped and persistent storage requirements.
 
 
 ## Usage
@@ -36,15 +36,15 @@ Web Storage API specification, as defined in the HTML Living Standard.
 You can read more about this specification on the 
 [WHATWG](https://html.spec.whatwg.org/multipage/webstorage.html) website.
 
-As a result, all storage interaction methods supported by 
+All storage interaction methods supported by 
 [`sessionStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)
 and [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 in browser implementations should also work with this
 library. The only exception is the 
-[`StorageEvent`](https://html.spec.whatwg.org/multipage/webstorage.html#the-storageevent-interface) interface, as this is not 
-intended to fully replace browser implementations.
+[`StorageEvent`](https://html.spec.whatwg.org/multipage/webstorage.html#the-storageevent-interface) interface, as this library
+is not intended to fully replace browser implementations.
 
-Here are examples of some trivial CRUD operations using `localStorage`.
+Here is an example of some trivial CRUD operations using `localStorage`.
 ```js
 // Setting
 localStorage.setItem("mykey", "myvalue");
@@ -62,7 +62,7 @@ delete localStorage["mykey"];
 localStorage.clear();
 ```
 
-You may refer to the following MDN links for further usage guidance.
+See the following MDN links for further usage guidance.
 - https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 - https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
 
