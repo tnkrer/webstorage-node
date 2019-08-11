@@ -25,9 +25,3 @@ export enum StorageType {
   SessionStorage = "sessionStorage",
   LocalStorage = "localStorage"
 }
-
-export interface StorageBackend extends Storage {
-  // Statelessly initialise DB on each operation
-  prepare: () => void;
-}
-
