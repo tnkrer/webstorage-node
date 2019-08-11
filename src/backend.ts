@@ -1,5 +1,5 @@
-import { StorageType, Storage } from "./types";
 import sqlite3 from "better-sqlite3";
+import { Storage, StorageType } from "./types";
 
 // Storage interface implementation
 // Based on the HTML Living Standard specification
@@ -35,7 +35,7 @@ export class StorageBackend implements Storage {
     return result ? result["count"] : 0;
   }
 
-  key(index: number) {
+  public key(index: number) {
     const statement = `SELECT key FROM webstorage ORDER BY added ASC;`;
     const results = this.database.prepare(statement).all();
     return results && results.length >= index + 1
@@ -43,14 +43,14 @@ export class StorageBackend implements Storage {
       : null; // null if index > length, as per spec
   }
 
-  getItem(key: string) {
+  public getItem(key: string) {
     const statement = `SELECT value FROM webstorage
       WHERE key=?`;
     const result = this.database.prepare(statement).get(key);
     return result ? result["value"] : undefined;
   }
 
-  setItem(key: string, value: string) {
+  public setItem(key: string, value: string) {
     const statement = `INSERT OR REPLACE INTO webstorage 
       VALUES (@key, @value, 
         COALESCE(
@@ -61,12 +61,12 @@ export class StorageBackend implements Storage {
     this.database.prepare(statement).run({ key, value });
   }
 
-  removeItem(key: string) {
+  public removeItem(key: string) {
     const statement = `DELETE FROM webstorage WHERE key=?`;
     this.database.prepare(statement).run(key);
   }
 
-  clear() {
+  public clear() {
     const statement = `DELETE FROM webstorage`;
     this.database.prepare(statement).run();
   }
