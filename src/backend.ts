@@ -9,7 +9,7 @@ export class StorageBackend implements Storage {
   private database: sqlite3.Database;
 
   constructor(private type: StorageType) {
-    this.database = sqlite3("webstorage-node.db", {
+    this.database = sqlite3("webstorage.db", {
       memory: type === StorageType.SessionStorage,
     });
 
