@@ -66,7 +66,11 @@ See the following MDN links for further usage guidance.
 - https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 - https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
 
-
+### Supporting both browser and Node.js environments
+You should not need to manually check for the existence of a `window`
+object and its properties. A browser implementation of Web Storage API 
+will be returned in place of the library's own if a browser implementation
+is detected.
 
 ## License
 ```
