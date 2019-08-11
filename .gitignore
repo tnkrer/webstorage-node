@@ -485,3 +485,5 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/node,linux,macos,visualstudio
 
+webstorage-node.db
+/lib
